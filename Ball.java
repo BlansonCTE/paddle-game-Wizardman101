@@ -13,19 +13,23 @@ class Ball{
     void move(){
         // Left wall hit
         if (x < 0)
-            xVelocity = game.speed;
+            // xVelocity = game.speed;
+            game.gameOver();
         // Right wall hit
-        if (x + xVelocity > game.getWidth()- DIAMETER)
-            xVelocity = -game.speed;
+        if (x + xVelocity > game.paddle.x+ DIAMETER)
+            // xVelocity = -game.speed;
+            game.gameOver();
         // Top wall hit
         if (y < 0)
             yVelocity = game.speed;
+        // Bottom wall hit
         if (y +xVelocity > game.getHeight() - DIAMETER)
-            game.gameOver();
-        if (collision()){
+            // game.gameOver();
             yVelocity = -game.speed;
-            game.speed++;
-            y = game.paddle.getTopY() - DIAMETER;
+        if (collision()){
+            xVelocity = -game.speed;
+            // game.speed++;
+            x = game.paddle.getMiddleX() - DIAMETER;
     }
 
 
